@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<style type="text/css">
+.slider {
+  -webkit-appearance: none;
+  width: 70%;
+  height: 10px;
+  background: white;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slidecontainer {
+  width: 100%;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: rgb(81, 185, 207);
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body style="background-color: rgb(224,224,224); font-family: sans-serif">
+    <nav class="navbar navbar-light" style="background-color: rgb(255,255,255);">
+        <a class="navbar-brand font-weight-bold" href="#" >
+          <img src="{{url_for('static', filename='document.ico')}}" height="30" width="30">
+          Sumarizator
+        </a>
+      </nav>
+    <div class="container">
+      <div class="row">        
+        <div class="col">
+          <form method="POST" action="/">
+            <button type="submit" class="btn btn-info mt-4" disabled>Vector:</button>
+            <button type="submit" class="btn btn-info mt-4" name="vec" value="1">Oftalmologic</button>
+            <button type="submit" class="btn btn-info mt-4" name="vec" value="2">CoRoLa</button>
+            <br><br>
+            <div class="slidecontainer">
+              <span>30%</span>
+              <input type="range" min="30" max="80" value="30" step="10" class="slider" name="proc">
+              <span>80%</span>
+            </div>
+            <br>
+            <textarea name="nameText" cols="60%" rows="20%" onfocus="this.value=''" style="resize: none">{{text}}</textarea>
+          </form>
+        </div>
+
+        <div class="col">
+          <button class="btn btn-info mt-4" onclick="copyToClipboard('#result')">Copiere</button>
+          <br><br><br><br>
+          <textarea cols="60%" rows="20%" style="resize: none" readonly id="result">{{result}}</textarea>
+        </div>
+
+      </div>      
+    </div>
+
+
+    <!-- <div class="container" style="margin-top: 3%; margin-right: 9.9%;">
+        <div class="row">
+          <div class="col">
+            <form method="POST" action="/">
+              <button type="submit" class="btn btn-info mt-4">Rezumă</button>
+              <textarea id="textArea" name ="nameText" cols="60" style="max-height:80%; resize: none; margin-top: 8%;" rows="25">
+                {{text}}
+              </textarea>
+            </form>
+          </div>
+          <div class="col">    
+            <button class="btn btn-info mt-4" onclick="copyToClipboard('#result')">Copiere</button>
+            <textarea  cols="60" style="max-height:80%; resize: none; margin-top: 8%;" rows="25"  readonly id="result" >{{result}}</textarea>
+          </div>        
+        </div>
+      </div> -->
+
+
+      <script>
+        function copyToClipboard(element) {
+          alert("Textul a fost copiat");
+
+          var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val($(element).text()).select();
+          document.execCommand("copy");
+          $temp.remove();
+        }
+        </script>
+</body>
+</html>
